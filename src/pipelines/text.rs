@@ -35,5 +35,6 @@ fn parse_text_to_components(text: &str) -> RecipeComponents {
         text: body,
         metadata: metadata_lines.join("\n"),
         name,
+        ..Default::default()
     }
 }

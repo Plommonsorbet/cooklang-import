@@ -34,6 +34,7 @@ pub async fn process(
             text: combined,
             metadata: format!("source: {}", source),
             name: String::new(),
+            ..Default::default()
         })
     }
 }

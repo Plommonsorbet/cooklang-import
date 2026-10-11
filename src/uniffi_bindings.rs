@@ -40,6 +40,7 @@ impl From<FfiRecipeComponents> for RecipeComponents {
             text: ffi.text,
             metadata: ffi.metadata,
             name: ffi.name,
+            ..Default::default()
         }
     }
 }
@@ -403,6 +404,7 @@ mod tests {
             text: "2 eggs\n1 cup flour\n\nMix together and bake.".to_string(),
             metadata: "author: Chef".to_string(),
             name: "Test Recipe".to_string(),
+            ..Default::default()
         };
 
         let ffi_components: FfiRecipeComponents = components.clone().into();

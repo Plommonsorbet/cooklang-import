@@ -140,14 +140,14 @@ async fn test_german_recipe_with_sections_and_array_yield() {
     assert!(result.text.contains("Vegane Butter mit der Schokolade"));
     assert!(result.text.contains("Mehl, Salz, Backpulver und Zucker"));
 
-    // Check that section names are preserved as markdown headers
+    // Check that section names are preserved as cooklang section headers
     assert!(
-        result.text.contains("## Brownie-Teig"),
+        result.text.contains("== Brownie-Teig =="),
         "Section name 'Brownie-Teig' should be preserved. Got: {}",
         result.text
     );
     assert!(
-        result.text.contains("## Cookie-Teig"),
+        result.text.contains("== Cookie-Teig =="),
         "Section name 'Cookie-Teig' should be preserved. Got: {}",
         result.text
     );

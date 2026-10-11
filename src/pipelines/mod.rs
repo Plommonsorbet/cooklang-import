@@ -13,6 +13,13 @@ pub struct RecipeComponents {
     pub metadata: String,
     /// Recipe name/title (always single-line)
     pub name: String,
+    /// The ingredient lines on their own, one per entry, when the source listed
+    /// them separately from the method. Empty when it did not; `text` always
+    /// carries everything, so a consumer that needs the list falls back to it.
+    pub ingredients: Vec<String>,
+    /// The method on its own, when the source separated it from the
+    /// ingredients. Empty when it did not.
+    pub instructions: String,
 }
 
 /// Truncate `s` to at most `max_bytes`, stopping at the nearest UTF-8 character

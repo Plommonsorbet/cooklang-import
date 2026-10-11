@@ -341,8 +341,9 @@ impl ClassMatchers {
                                 .trim()
                                 .to_string();
                             if !header_text.is_empty() {
-                                // Add section header as markdown heading
-                                items.push(format!("## {}", header_text.trim_end_matches(':')));
+                                // A section header, in the syntax the converter prompt
+                                // asks for: this crate's output is read as cooklang.
+                                items.push(format!("== {} ==", header_text.trim_end_matches(':')));
                             }
                         }
                     }
@@ -390,7 +391,7 @@ impl ClassMatchers {
                                         .to_string();
                                     if !header_text.is_empty() && header_text.len() < 100 {
                                         items.push(format!(
-                                            "## {}",
+                                            "== {} ==",
                                             header_text.trim_end_matches(':')
                                         ));
                                         break;

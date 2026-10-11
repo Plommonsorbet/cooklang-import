@@ -234,7 +234,7 @@ impl JsonLdExtractor {
                                 // Add section header if present (with extra blank line before)
                                 if let Some(section_name) = section.name {
                                     let header = format!(
-                                        "\n## {}",
+                                        "\n== {} ==",
                                         decode_html_symbols(&section_name).trim_end_matches(':')
                                     );
                                     texts.push(header);
@@ -274,7 +274,7 @@ impl JsonLdExtractor {
                                     // Add section header if present
                                     if let Some(section_name) = section.name {
                                         let header = format!(
-                                            "## {}",
+                                            "== {} ==",
                                             decode_html_symbols(&section_name)
                                                 .trim_end_matches(':')
                                         );

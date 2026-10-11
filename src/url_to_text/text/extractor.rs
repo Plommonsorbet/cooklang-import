@@ -148,25 +148,28 @@ impl TextExtractor {
             .unwrap_or(&Vec::new())
             .iter()
             .filter_map(|i| i.as_str().map(String::from))
-            .collect::<Vec<String>>()
-            .join("\n");
+            .collect::<Vec<String>>();
 
-        // Format instructions as space-separated (paragraph)
+        // One step per paragraph, as the JSON-LD and microdata extractors
+        // render them: a consumer reads a paragraph as a step, so steps joined
+        // by a space arrive as one step however many the recipe has.
         let instructions = json["instructions"]
             .as_array()
             .unwrap_or(&Vec::new())
             .iter()
             .filter_map(|i| i.as_str().map(String::from))
             .collect::<Vec<String>>()
-            .join(" ");
+            .join("\n\n");
 
         // Combine ingredients and instructions
-        let text = format!("{}\n\n{}", ingredients, instructions);
+        let text = format!("{}\n\n{}", ingredients.join("\n"), instructions);
 
         Ok(RecipeComponents {
             text,
             metadata,
             name,
+            ingredients,
+            instructions,
         })
     }
 }

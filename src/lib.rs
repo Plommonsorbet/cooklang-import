@@ -143,6 +143,7 @@ pub async fn text_to_recipe(text: &str, extract: bool) -> Result<RecipeComponent
 ///         text: "2 eggs\n1 cup flour\n\nMix and bake at 350F.".to_string(),
 ///         metadata: String::new(),
 ///         name: "Simple Cake".to_string(),
+///         ..Default::default()
 ///     };
 ///     let cooklang = text_to_cooklang(&components).await?;
 ///     println!("{}", cooklang);

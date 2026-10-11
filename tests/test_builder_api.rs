@@ -83,7 +83,8 @@ async fn test_convenience_text_to_cooklang_with_content() {
         text: "2 eggs\n1 cup flour\n1/2 cup milk\n\nMix all ingredients together. Bake at 350°F for 30 minutes.".to_string(),
         metadata: String::new(),
         name: "Simple Recipe".to_string(),
-    };
+    ..Default::default()
+};
 
     let result = text_to_cooklang(&components).await;
 
@@ -123,6 +124,7 @@ async fn test_convenience_text_to_cooklang() {
             .to_string(),
         metadata: String::new(),
         name: String::new(),
+        ..Default::default()
     };
 
     let result = text_to_cooklang(&components).await;

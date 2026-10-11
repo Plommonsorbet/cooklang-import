@@ -201,6 +201,12 @@ fn recipe_to_components(recipe: &crate::model::Recipe) -> RecipeComponents {
         text,
         metadata: super::metadata_to_yaml(&entries),
         name: super::sanitize_name(&recipe.name),
+        ingredients: recipe
+            .ingredients
+            .iter()
+            .map(|i| i.trim().to_string())
+            .collect(),
+        instructions: recipe.instructions.trim_start().to_string(),
     }
 }
 
@@ -551,6 +557,20 @@ mod tests {
         // A near-empty body from a 200 response is a JS shell, not a recipe page.
         let html = "<html><head><title>Recipe</title></head><body><div id=\"app\"></div>                    <script>boot()</script></body></html>";
         assert!(looks_blocked(html));
+    }
+
+    #[test]
+    fn test_recipe_to_components_keeps_the_list_and_method_apart() {
+        let recipe = crate::model::Recipe {
+            name: "Eggs".into(),
+            ingredients: vec![" 2 eggs ".into(), "1 cup flour".into()],
+            instructions: "Mix.\n\nBake.".into(),
+            ..Default::default()
+        };
+        let c = recipe_to_components(&recipe);
+        assert_eq!(c.text, "2 eggs\n1 cup flour\n\nMix.\n\nBake.");
+        assert_eq!(c.ingredients, vec!["2 eggs", "1 cup flour"]);
+        assert_eq!(c.instructions, "Mix.\n\nBake.");
     }
 
     // --- Regression: structured extractors returning empty content ---

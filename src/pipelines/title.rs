@@ -194,6 +194,7 @@ mod tests {
             text: "2 eggs\n\nBoil them.".into(),
             metadata: String::new(),
             name: "Boiled Eggs".into(),
+            ..Default::default()
         };
         ensure_title(&mut c).await;
         assert_eq!(c.name, "Boiled Eggs");
@@ -206,6 +207,7 @@ mod tests {
             text: "2 eggs\n\nBoil them.".into(),
             metadata: String::new(),
             name: String::new(),
+            ..Default::default()
         };
         ensure_title(&mut c).await;
         assert_eq!(c.name, "Simple Test Recipe");
@@ -218,7 +220,8 @@ mod tests {
             text: "2 eggs\n\nBoil them.".into(),
             metadata: String::new(),
             name: "How to Make the Most Incredible Perfectly Boiled Farm Fresh Eggs Every Single Time Without Fail".into(),
-        };
+        ..Default::default()
+    };
         ensure_title(&mut c).await;
         assert_eq!(c.name, "Simple Test Recipe");
     }
